@@ -1,0 +1,92 @@
+<!--
+Definitions for DynDNS Updater docker container.
+
+This file is used as data source to generate README.md and unRAID template files
+from Jinja2 templates.
+-->
+<defs>
+  <app>
+    <id>13</id>
+    <gui_type>x11</gui_type>
+    <friendly_name>DynDNS Updater</friendly_name>
+    <name>{{ defs.app.friendly_name|lower|replace(' ', '-') }}</name>
+    <project>
+      <description>
+Official DynDNS Updater
+      </description>
+      <url>https://help.dyn.com/updater-linux/</url>
+    </project>
+    <unraid>
+      <support_url></support_url>
+      <category>Network:DNS</category>
+    </unraid>
+    <container>
+      <rough_download_size>277MB</rough_download_size>
+      <storage_permissions>rw</storage_permissions>
+    </container>
+    <!-- Extra stuff to be added to the documentation. -->
+    <documentation>
+      <section>
+        <title level="2">Account</title>
+        <content>
+{{ defs.app.friendly_name }} requires an account at https://account.dyn.com/
+        </content>
+      </section>
+      <section>
+        <title level="3">Setup</title>
+        <content>
+
+        </content>
+      </section>
+    </documentation>
+    <!-- Changelog of the application. -->
+    <history>
+      <release>
+        <version>1.0.0</version>
+        <date>2021-01-29</date>
+        <change>Initial release.</change>
+      </release>
+    </history>
+  </app>
+  <container>
+    <!-- Environment variables -->
+    <environment_variables>
+<!--       <environment_variable>
+        <name>OPENSUBTITLES_USERNAME</name>
+        <description>Username of your [OpenSubtitles](https://www.opensubtitles.org) account.  Required to download subtitles.</description>
+        <default></default>
+        <unraid_template>
+          <title>OpenSubtitles Username</title>
+          <description>Username of your OpenSubtitles (https://www.opensubtitles.org) account.  Required to download subtitles.</description>
+          <display>always</display>
+          <required>false</required>
+          <mask>false</mask>
+        </unraid_template>
+      </environment_variable> -->
+    </environment_variables>
+    <!-- Volumes -->
+    <volumes>
+      <volume>
+        <container_path>/home/dyndns/.dynupdater</container_path>
+        <host_path_example>$HOME/dyndns/.dynupdater</host_path_example>
+        <description>This is the folder where the DynDNS Updater stores config files.</description>
+        <permissions>rw</permissions>
+        <include_in_quick_start>false</include_in_quick_start>
+        <unraid_template>
+          <title>DynDNS Updater config folder</title>
+          <description>This is the folder where the DynDNS Updater stores config files. [br]Container path: /home/dyndns/.dynupdater</description>
+          <default/>
+          <display>always</display>
+          <required>false</required>
+          <mask>false</mask>
+        </unraid_template>
+      </volume>
+    </volumes>
+    <!-- Network ports -->
+    <ports/>
+    <!-- Devices -->
+    <devices/>
+    <!-- Extra parameters -->
+    <extra_params/>
+  </container>
+</defs>
